@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuckyWe - Products</title>
+    <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"  rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a href="./product.html" class="navbar-brand fw-bold text-primary">LuckyWe</a>
+            <button class="navbar-toggler" type="button"  data-bs-toggle="collapse"
+                        data-bs-target="#customerNavbar"aria-expanded="false"
+                         aria-controls="customerNavbar"aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>            
+            </button>
+            <div class="collapse navbar-collapse" id="customerNavbar">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <li class="nav-item">
+                        <a href="./product.html" class="nav-link active fw-semibold">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./wishlist.html"  class="nav-link">Wishlist
+                            <span id="wishlist-count"  class="badge bg-danger">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./cart.html"  class="nav-link">cart
+                            <span id="cart-count" class="badge bg-primary">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./myorders.html" class="nav-link">My Orders</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">👤 User</a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profileModal">
+                                    My Profile
+                                </button>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <button type="button" id="logout-btn" class="dropdown-item text-danger">Logout</button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container py-4">
+        <div class="mb-4">
+            <h2 class="fw-bold mb-1">Products</h2>
+            <p class="text-secondary mb-0">Browse our products and add your favorites to the cart.</p>
+        </div>
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-3 p-md-4">
+                <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <label for="search-input"  class="form-label fw-semibold">Search Products</label>
+                        <input type="search" id="search-input" class="form-control" placeholder="Search products..." autocomplete="off">
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <label for="category-filter" class="form-label fw-semibold">Category</label>
+                        <select id="category-filter" class="form-select">
+                            <option value="all">All Categories</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Books">Books</option>
+                            <option value="Shoes">Shoes</option>
+                        </select>
+                    </div>
+                   <div class="col-12 col-md-3">
+                        <label for="min-price-filter" class="form-label fw-semibold">
+                            Min Price
+                        </label>
+                        <select id="min-price-filter" class="form-select">
+                            <option value="">No Minimum</option>
+                            <option value="1000">₹1000</option>
+                            <option value="2000">₹2000</option>
+                            <option value="3000">₹3000</option>
+                            <option value="4000">₹4000</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-md-3">
+                        <label for="max-price-filter" class="form-label fw-semibold">
+                            Max Price
+                        </label>
+
+                    <select id="max-price-filter" class="form-select">
+                        <option value="">No Maximum</option>
+                        <option value="1000">₹1000</option>
+                        <option value="2000">₹2000</option>
+                        <option value="3000">₹3000</option>
+                        <option value="4000">₹4000</option>
+                    </select>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div  id="loading" class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="text-secondary mt-3 mb-0">
+                Loading products...
+            </p>
+        </div>
+        <div  id="error-message"  class="alert alert-danger d-none"  role="alert"></div>
+        <div id="product-container" class="row g-4"></div>
+        <div id="no-products" class="text-center py-5 d-none">
+            <h5 class="fw-semibold">No products found</h5>
+            <p class="text-secondary mb-0">
+                Try changing your search or filters.
+            </p>
+        </div>
+        <nav id="pagination-container" class="mt-5" aria-label="Product pagination">
+            <ul id="pagination" class="pagination justify-content-center"></ul>
+        </nav>
+    </div>
+    <div class="modal fade" id="profileModal" tabindex="-1"aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="profileModalLabel">My Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label text-secondary">Name</label>
+                        <p id="profile-name" class="fw-semibold mb-0">-</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-secondary">Email</label>
+                        <p id="profile-email" class="fw-semibold mb-0">-</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-secondary">Phone</label>
+                        <p id="profile-phone" class="fw-semibold mb-0">-</p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-secondary">Address</label>
+                        <p id="profile-address" class="fw-semibold mb-0">-</p>
+                    </div>
+                    <div>
+                        <label class="form-label text-secondary">Account Type</label>
+                        <p id="profile-role" class="fw-semibold mb-0">-</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="../js/products.js"></script>
+
+</body>
+</html>
+

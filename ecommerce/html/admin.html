@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuckyWe - Admin Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="./admin.html">LuckyWe</a>
+            <div class="d-flex">
+                <a href="./admin.html" class="btn btn-outline-light me-2">Dashboard</a>
+                <a href="./products.html" class="btn btn-outline-light me-2">Products</a>
+                <a href="./orders.html" class="btn btn-outline-light me-2">Orders</a>
+                <button class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#adminProfileModal">Profile</button>
+                <button class="btn btn-outline-light" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2 class="mb-4">Admin Dashboard</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Products</h5>
+                        <h2 id="productCount">0</h2>
+                        <p class="text-muted">Total Products</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Orders</h5>
+                        <h2 id="orderCount">0</h2>
+                        <p class="text-muted">Total orders</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5">
+            <h4 class="mb-3">Quick Actions</h4>
+            <a href="./products.html" class="btn btn-primary me-2">products</a>
+            <a href="./orders.html" class="btn btn-primary me-2">View Orders</a>
+        </div>
+
+    </div>
+    <div class="modal fade" id="adminProfileModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Admin Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <strong>Name</strong>
+                        <span id="adminName"></span>
+                    </p>
+                    <p>
+                        <strong>Email:</strong>
+                        <span id="adminEmail"></span>
+                    </p>
+                    <p>
+                        <strong>Role:</strong>
+                        <span id="adminRole"></span>
+                    </p>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../../js/admin/dashboard.js"></script>
+</body>
+</html>
